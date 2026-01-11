@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader - Free Video & MP3 Download</title>
+    <meta name="description" content="Free YouTube Video Downloader - Download videos in 144p, 360p, 480p, 720p, 1080p, 4K and MP3 audio. No registration required.">
+    <meta name="keywords" content="youtube downloader, youtube to mp3, video downloader, youtube video download, free download">
+    
+    <!-- Adsterra Ads -->
+    <script src="https://pl28349217.effectivegatecpm.com/9f/bc/6c/9fbc6c67ed0248197c701c4647ed688a.js"></script>
+    <script>
+        atOptions = {
+            'key': '07f252333fee3f5b55d31b7eb3a1ba1c',
+            'format': 'iframe',
+            'height': 300,
+            'width': 160,
+            'params': {}
+        };
+    </script>
+    <script src="https://www.highperformanceformat.com/07f252333fee3f5b55d31b7eb3a1ba1c/invoke.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5em;
+            font-weight: 800;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Downloader Box */
+        .downloader-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .url-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .url-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .quality-selector {
+            margin: 25px 0;
+        }
+        
+        .quality-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .quality-btn {
+            padding: 12px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .quality-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .quality-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .download-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .download-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        /* Telegram Bot Section */
+        .telegram-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: #0088cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 18px;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            background: #0077b5;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        /* Ads Sidebar */
+        .ads-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .ad-banner {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* Status & Results */
+        .status-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .status-box.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .download-links {
+            margin-top: 20px;
+        }
+        
+        .download-link {
+            display: block;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-decoration: none;
+            color: #333;
+            border-left: 4px solid #667eea;
+        }
+        
+        .download-link:hover {
+            background: #eef2ff;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Loading Animation */
+        .loader {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header, .downloader-box, .telegram-section {
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 2em;
+            }
+            
+            .quality-buttons {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .toast.show {
+            display: block;
+            animation: slideIn 0.3s;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Telegram Widget */
+        .telegram-widget {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            margin: 15px auto;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">🎥 YouTube Downloader Pro</div>
+            <div class="tagline">Download YouTube videos in HD quality & convert to MP3 for FREE!</div>
+            <div class="telegram-btn" onclick="openTelegram()">
+                <span>🤖</span> Use Our Telegram Bot
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Column: Downloader -->
+            <div class="downloader-box">
+                <h2 style="margin-bottom: 20px; color: #444;">📥 Download YouTube Video</h2>
+                
+                <div class="input-group">
+                    <label for="youtubeUrl">🔗 YouTube Video URL</label>
+                    <input type="url" id="youtubeUrl" class="url-input" 
+                           placeholder="Paste YouTube link here (e.g., https://youtube.com/watch?v=...)" 
+                           onpaste="handlePaste(event)">
+                </div>
+
+                <div class="quality-selector">
+                    <label>📹 Select Video Quality</label>
+                    <div class="quality-buttons" id="videoQualities">
+                        <div class="quality-btn" onclick="selectQuality('144p')">144p</div>
+                        <div class="quality-btn" onclick="selectQuality('360p')">360p</div>
+                        <div class="quality-btn active" onclick="selectQuality('480p')">480p</div>
+                        <div class="quality-btn" onclick="selectQuality('720p')">720p HD</div>
+                        <div class="quality-btn" onclick="selectQuality('1080p')">1080p FHD</div>
+                        <div class="quality-btn" onclick="selectQuality('4k')">4K UHD</div>
+                    </div>
+                </div>
+
+                <div class="quality-selector">
+                    <label>🎵 Audio Format (MP3)</label>
+                    <div class="quality-buttons" id="audioFormats">
+                        <div class="quality-btn" onclick="selectAudio('64')">MP3 64kbps</div>
+                        <div class="quality-btn active" onclick="selectAudio('128')">MP3 128kbps</div>
+                        <div class="quality-btn" onclick="selectAudio('192')">MP3 192kbps</div>
+                        <div class="quality-btn" onclick="selectAudio('320')">MP3 320kbps</div>
+                    </div>
+                </div>
+
+                <button class="download-btn" onclick="startDownload()">
+                    <span>⬇️</span> Download Now
+                </button>
+
+                <!-- Status Box -->
+                <div class="status-box" id="statusBox">
+                    <div class="loader" id="loader"></div>
+                    <div id="statusMessage"></div>
+                    <div class="download-links" id="downloadLinks"></div>
+                </div>
+            </div>
+
+            <!-- Right Column: Ads & Telegram -->
+            <div class="ads-sidebar">
+                <!-- Adsterra Banner Ad -->
+                <div class="ad-banner">
+                    <h3 style="color: #667eea; margin-bottom: 10px;">💰 EARN MONEY</h3>
+                    <p style="color: #666; margin-bottom: 15px;">Watch ads and earn money!</p>
+                    <div id="container-cc3d63c5805ef319482554f01f77f94c"></div>
+                </div>
+
+                <!-- Telegram Bot Widget -->
+                <div class="telegram-widget">
+                    <h3 style="color: #0088cc; margin-bottom: 15px;">🤖 Telegram Bot</h3>
+                    <p style="color: #666; margin-bottom: 15px;">Get instant downloads via Telegram</p>
+                    <a href="https://t.me/your_bot_username" target="_blank" class="telegram-btn" style="text-decoration: none;">
+                        <span>📱</span> Open in Telegram
+                    </a>
+                    <div class="qr-code">
+                        <!-- QR Code will be generated by JS -->
+                        <canvas id="qrCanvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Download</h3>
+                    <p>High-speed downloading with no limits</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>100% Safe</h3>
+                    <p>No viruses, no malware, completely safe</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Telegram Bot Section -->
+        <div class="telegram-section">
+            <h2 style="color: #0088cc; margin-bottom: 20px;">🤖 Use Our Telegram Bot</h2>
+            <p style="color: #666; margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Our Telegram bot provides faster downloads, more formats, and works directly in your Telegram app. 
+                No need to visit websites - download videos with a single command!
+            </p>
+            
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 30px 0;">
+                <a href="https://t.me/your_bot_username?start=website" target="_blank" class="telegram-btn" style="background: linear-gradient(45deg, #0088cc, #00aced);">
+                    <span>🚀</span> Start Bot Now
+                </a>
+                <a href="https://t.me/share/url?url=https://t.me/your_bot_username&text=Download%20YouTube%20videos%20for%20free!" target="_blank" class="telegram-btn" style="background: linear-gradient(45deg, #667eea, #764ba2);">
+                    <span>📤</span> Share with Friends
+                </a>
+            </div>
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                <h4 style="color: #444; margin-bottom: 15px;">📋 Bot Commands:</h4>
+                <div style="text-align: left; max-width: 500px; margin: 0 auto;">
+                    <p><code>/start</code> - Start the bot</p>
+                    <p><code>/download [url]</code> - Download video</p>
+                    <p><code>/mp3 [url]</code> - Convert to MP3</p>
+                    <p><code>/help</code> - Show help</p>
+                    <p><code>/earn</code> - Earn money with ads</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎥</div>
+                <h3>All Formats</h3>
+                <p>MP4, WebM, 3GP, MP3, M4A</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Friendly</h3>
+                <p>Works on all devices</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Free Forever</h3>
+                <p>No registration needed</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Processing</h3>
+                <p>Instant download links</p>
+            </div>
+        </div>
+
+        <!-- Adsterra Native Banner -->
+        <div class="ad-banner" style="margin: 30px 0;">
+            <h3 style="color: #667eea; margin-bottom: 15px;">💸 Make Money Online</h3>
+            <p style="color: #666;">Earn $50 daily by watching ads!</p>
+            <script async="async" data-cfasync="false" src="https://pl28361667.effectivegatecpm.com/cc3d63c5805ef319482554f01f77f94c/invoke.js"></script>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="logo" style="font-size: 1.8em;">YouTube Downloader</div>
+            <p style="color: #666; margin: 20px 0;">Free YouTube video downloader and converter</p>
+            
+            <div class="footer-links">
+                <a href="#" onclick="showToast('Privacy policy coming soon')">Privacy Policy</a>
+                <a href="#" onclick="showToast('Terms of service coming soon')">Terms of Service</a>
+                <a href="#" onclick="showToast('Contact us via Telegram')">Contact</a>
+                <a href="#" onclick="showToast('DMCA information')">DMCA</a>
+                <a href="https://github.com/yourusername/youtube-downloader" target="_blank">GitHub</a>
+            </div>
+            
+            <p style="color: #888; margin-top: 20px; font-size: 0.9em;">
+                © 2024 YouTube Downloader Pro. This tool is for personal use only.
+                We are not affiliated with YouTube.
+            </p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Global variables
+        let selectedQuality = '480p';
+        let selectedAudio = '128';
+        let currentVideoId = '';
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            generateQRCode();
+            loadAdScripts();
+        });
+        
+        // Handle paste event
+        function handlePaste(event) {
+            setTimeout(() => {
+                const url = document.getElementById('youtubeUrl').value;
+                if (isYouTubeUrl(url)) {
+                    showToast('✅ YouTube URL detected!');
+                    extractVideoInfo(url);
+                }
+            }, 100);
+        }
+        
+        // Check if URL is YouTube
+        function isYouTubeUrl(url) {
+            return url.includes('youtube.com') || url.includes('youtu.be');
+        }
+        
+        // Extract video ID from URL
+        function extractVideoId(url) {
+            const patterns = [
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+                /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/
+            ];
+            
+            for (const pattern of patterns) {
+                const match = url.match(pattern);
+                if (match && match[1]) {
+                    return match[1];
+                }
+            }
+            return null;
+        }
+        
+        // Extract video info (simulated)
+        function extractVideoInfo(url) {
+            const videoId = extractVideoId(url);
+            if (!videoId) {
+                showToast('❌ Invalid YouTube URL');
+                return;
+            }
+            
+            currentVideoId = videoId;
+            showToast('✅ Video ID extracted: ' + videoId);
+            
+            // Show thumbnail preview
+            showThumbnail(videoId);
+        }
+        
+        // Show thumbnail
+        function showThumbnail(videoId) {
+            const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            
+            // Create thumbnail element
+            let thumbnail = document.getElementById('thumbnail');
+            if (!thumbnail) {
+                thumbnail = document.createElement('img');
+                thumbnail.id = 'thumbnail';
+                thumbnail.style.maxWidth = '300px';
+                thumbnail.style.borderRadius = '10px';
+                thumbnail.style.marginTop = '15px';
+                document.querySelector('.downloader-box').appendChild(thumbnail);
+            }
+            
+            thumbnail.src = thumbnailUrl;
+            thumbnail.onerror = function() {
+                this.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+            };
+        }
+        
+        // Select video quality
+        function selectQuality(quality) {
+            selectedQuality = quality;
+            
+            // Update buttons
+            document.querySelectorAll('#videoQualities .quality-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(quality)) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            showToast(`✅ Selected: ${quality}`);
+        }
+        
+        // Select audio format
+        function selectAudio(format) {
+            selectedAudio = format;
+            
+            // Update buttons
+            document.querySelectorAll('#audioFormats .quality-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(format)) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            showToast(`✅ Selected: MP3 ${format}kbps`);
+        }
+        
+        // Start download process
+        function startDownload() {
+            const urlInput = document.getElementById('youtubeUrl');
+            const url = urlInput.value.trim();
+            
+            if (!url || !isYouTubeUrl(url)) {
+                showToast('❌ Please enter a valid YouTube URL');
+                urlInput.focus();
+                return;
+            }
+            
+            const videoId = extractVideoId(url);
+            if (!videoId) {
+                showToast('❌ Could not extract video ID');
+                return;
+            }
+            
+            // Show loading
+            const loader = document.getElementById('loader');
+            const statusBox = document.getElementById('statusBox');
+            const statusMessage = document.getElementById('statusMessage');
+            const downloadLinks = document.getElementById('downloadLinks');
+            
+            loader.style.display = 'block';
+            statusBox.classList.add('show');
+            statusMessage.innerHTML = '🔄 Processing video...';
+            downloadLinks.innerHTML = '';
+            
+            // Simulate processing
+            setTimeout(() => {
+                generateDownloadLinks(videoId);
+                loader.style.display = 'none';
+                
+                // Show ad after processing
+                showAd();
+            }, 2000);
+        }
+        
+        // Generate download links
+        function generateDownloadLinks(videoId) {
+            const statusMessage = document.getElementById('statusMessage');
+            const downloadLinks = document.getElementById('downloadLinks');
+            
+            statusMessage.innerHTML = '✅ <strong>Download Links Ready!</strong><br><small>Click any link below to download</small>';
+            
+            // Video download links
+            const qualities = [
+                { name: '144p', size: '~10-20MB' },
+                { name: '360p', size: '~30-50MB' },
+                { name: '480p', size: '~50-80MB' },
+                { name: '720p HD', size: '~100-150MB' },
+                { name: '1080p FHD', size: '~200-300MB' },
+                { name: '4K UHD', size: '~500MB-1GB' }
+            ];
+            
+            // Audio download links
+            const audioFormats = [
+                { name: 'MP3 64kbps', size: '~3-5MB' },
+                { name: 'MP3 128kbps', size: '~5-10MB' },
+                { name: 'MP3 192kbps', size: '~8-15MB' },
+                { name: 'MP3 320kbps', size: '~15-25MB' }
+            ];
+            
+            let linksHTML = '<h4 style="margin: 20px 0 10px 0; color: #444;">📹 Video Formats:</h4>';
+            
+            qualities.forEach(quality => {
+                const downloadUrl = generateDownloadUrl(videoId, quality.name, 'video');
+                linksHTML += `
+                    <a href="${downloadUrl}" target="_blank" class="download-link">
+                        <strong>${quality.name}</strong> (${quality.size})
+                        <span style="float: right;">⬇️</span>
+                    </a>
+                `;
+            });
+            
+            linksHTML += '<h4 style="margin: 20px 0 10px 0; color: #444;">🎵 Audio Formats:</h4>';
+            
+            audioFormats.forEach(format => {
+                const downloadUrl = generateDownloadUrl(videoId, format.name, 'audio');
+                linksHTML += `
+                    <a href="${downloadUrl}" target="_blank" class="download-link">
+                        <strong>${format.name}</strong> (${format.size})
+                        <span style="float: right;">🎵</span>
+                    </a>
+                `;
+            });
+            
+            // Telegram bot link
+            linksHTML += `
+                <div style="margin-top: 30px; padding: 20px; background: linear-gradient(45deg, #0088cc, #00aced); border-radius: 10px; text-align: center;">
+                    <h4 style="color: white; margin-bottom: 10px;">🚀 Faster Downloads via Telegram Bot</h4>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 15px;">Get instant downloads with our Telegram bot</p>
+                    <a href="https://t.me/your_bot_username?start=download_${videoId}" target="_blank" 
+                       style="display: inline-block; padding: 12px 25px; background: white; color: #0088cc; 
+                              text-decoration: none; border-radius: 8px; font-weight: bold;">
+                        🤖 Download via Telegram
+                    </a>
+                </div>
+            `;
+            
+            downloadLinks.innerHTML = linksHTML;
+            
+            // Show success toast
+            showToast('✅ Download links generated!');
+        }
+        
+        // Generate download URL (simulated)
+        function generateDownloadUrl(videoId, quality, type) {
+            // This is a simulated URL - in production, you would use a real API
+            if (type === 'video') {
+                return `https://loader.to/api/download/?url=https://youtube.com/watch?v=${videoId}&format=${quality}`;
+            } else {
+                return `https://loader.to/api/convert/?url=https://youtube.com/watch?v=${videoId}&format=mp3&quality=${quality}`;
+            }
+        }
+        
+        // Show ad
+        function showAd() {
+            // Show popunder ad (simulated)
+            try {
+                // This would trigger the Adsterra popunder script
+                console.log('Showing ad...');
+                
+                // Show ad notification
+                setTimeout(() => {
+                    showToast('💰 Support us by watching this ad!');
+                    
+                    // Open ad in new tab after delay
+                    setTimeout(() => {
+                        window.open('https://pl28349217.effectivegatecpm.com/9f/bc/6c/9fbc6c67ed0248197c701c4647ed688a', '_blank');
+                    }, 1000);
+                }, 1000);
+            } catch (e) {
+                console.log('Ad error:', e);
+            }
+        }
+        
+        // Load ad scripts
+        function loadAdScripts() {
+            // Adsterra scripts are already in head
+            console.log('Ads loaded');
+        }
+        
+        // Open Telegram bot
+        function openTelegram() {
+            const botUrl = 'https://t.me/your_bot_username';
+            window.open(botUrl, '_blank');
+            showToast('Opening Telegram bot...');
+            
+            // Track bot click
+            localStorage.setItem('bot_clicks', parseInt(localStorage.getItem('bot_clicks') || '0') + 1);
+        }
+        
+        // Generate QR code for Telegram bot
+        function generateQRCode() {
+            const canvas = document.getElementById('qrCanvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const telegramUrl = 'https://t.me/your_bot_username';
+            
+            // Simple QR code simulation
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, 150, 150);
+            
+            ctx.fillStyle = 'black';
+            ctx.font = '12px Arial';
+            ctx.fillText('Scan for', 40, 70);
+            ctx.fillText('Telegram Bot', 35, 85);
+            
+            // Draw Telegram logo
+            ctx.fillStyle = '#0088cc';
+            ctx.beginPath();
+            ctx.arc(75, 110, 20, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.fillStyle = 'white';
+            ctx.font = '20px Arial';
+            ctx.fillText('✈️', 67, 117);
+        }
+        
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('✅ Copied to clipboard!');
+            });
+        }
+        
+        // Share on Telegram
+        function shareOnTelegram() {
+            const text = encodeURIComponent('Download YouTube videos for free! Check out this awesome tool.');
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://t.me/share/url?url=${url}&text=${text}`, '_blank');
+        }
+        
+        // Analytics (simple)
+        window.addEventListener('load', function() {
+            const visits = parseInt(localStorage.getItem('visits') || '0') + 1;
+            localStorage.setItem('visits', visits);
+            console.log(`Total visits: ${visits}`);
+        });
+    </script>
+</body>
+</html>
